@@ -16,7 +16,7 @@
 
 package quiz.impl;
 
-import org.tsaap.questions.*;
+import quiz.*;
 
 import java.util.ArrayList;
 import java.util.List;

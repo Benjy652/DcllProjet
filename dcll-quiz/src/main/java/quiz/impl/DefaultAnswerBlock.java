@@ -16,8 +16,8 @@
 
 package quiz.impl;
 
-import org.tsaap.questions.Answer;
-import org.tsaap.questions.AnswerBlock;
+import quiz.Answer;
+import quiz.AnswerBlock;
 
 import java.util.ArrayList;
 import java.util.List;
