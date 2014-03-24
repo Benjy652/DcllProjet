@@ -16,7 +16,7 @@
 
 package quiz.impl;
 
-import org.tsaap.questions.Answer;
+import quiz.Answer;
 
 /**
  * @author franck Silvestre

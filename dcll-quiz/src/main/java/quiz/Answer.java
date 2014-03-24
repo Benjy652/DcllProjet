@@ -33,7 +33,7 @@ public interface Answer {
      *
      * @return the text value of the answer
      */
-    public String getTextVfdfdfdalue();
+    public String getTextValue();
 
     /**
      * Get the percent credit the answer represents in the answer set
