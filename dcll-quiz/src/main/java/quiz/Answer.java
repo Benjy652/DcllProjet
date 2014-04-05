@@ -17,6 +17,7 @@
 package quiz;
 
 /**
+ * 
  * @author franck Silvestre
  */
 public interface Answer {
