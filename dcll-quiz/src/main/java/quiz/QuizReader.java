@@ -18,24 +18,20 @@ package quiz;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.regex.Pattern;
+
+import quiz.impl.DefaultAnswer;
+import quiz.impl.DefaultAnswerBlock;
+import quiz.impl.DefaultQuestion;
+import quiz.impl.DefaultQuiz;
 
 /**
  * @author franck Silvestre
  */
 public interface QuizReader {
 
-    /**
-     * Parse an input source describing a quiz
-     * @param reader the input source
-     * @throws IOException
-     * @throws QuizReaderException
-     */
-    public void parse(Reader reader) throws IOException, QuizReaderException;
+	public Quiz getDefaultQuiz(String quiz);
 
-    /**
-     * Get the quiz content handler that is notified during the parsing.
-     * Design inspired from SAX API.
-     * @return the quiz content handler
-     */
-    public QuizContentHandler getQuizContentHandler();
+	public boolean checkQuestionForm(String question);
+
 }

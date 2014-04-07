@@ -5,12 +5,13 @@ import java.util.regex.Pattern;
 import quiz.Answer;
 import quiz.QuestionType;
 import quiz.Quiz;
+import quiz.QuizReader;
 import quiz.impl.DefaultQuiz;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
 
-public class WikiReader {
+public class WikiReader implements QuizReader {
 	
 	/**
 	 * This method take a quiz, in a text form, in entry and do all the necessary operations to check
@@ -18,7 +19,7 @@ public class WikiReader {
 	 * @param quiz
 	 * @return a Quiz object 
 	 */
-	Quiz getDefaultQuiz(String quiz){
+	public Quiz getDefaultQuiz(String quiz){
 		String[] questions = quiz.split("\\n\\n");
 		DefaultQuiz defQuiz = new DefaultQuiz();
 		
@@ -36,7 +37,7 @@ public class WikiReader {
 	 * @param question
 	 * @return true if the question respects wikiversity form, false otherwise
 	 */
-	boolean checkQuestionForm(String question)
+	public boolean checkQuestionForm(String question)
 	{
 		String regEx = "\\A\\{.+\\n\\|type=";
 		regEx += "\"(\\[\\]|\\(\\))\"\\}\\n";
@@ -46,11 +47,11 @@ public class WikiReader {
 	}
 	
 	/**
-	 * This method takes a question in a text form and construc the object
+	 * This method takes a question in a text form and construct the object
 	 * @param question
 	 * @return DefaultQuestion object
 	 */
-	DefaultQuestion getQuestion(String question) 
+	private DefaultQuestion getQuestion(String question) 
 	{
 		DefaultQuestion questionObject = new DefaultQuestion();
 		questionObject.setQuestionType(getQuestionType(question));
@@ -64,7 +65,7 @@ public class WikiReader {
 	 * @param question
 	 * @return the type of the question (Multiple or Single)
 	 */
-	QuestionType getQuestionType(String question) 
+	private QuestionType getQuestionType(String question) 
 	{
 		int index = question.indexOf('|');
 		if(question.charAt(index+7) == '[') return QuestionType.MultipleChoice;
@@ -77,7 +78,7 @@ public class WikiReader {
 	 * @param question
 	 * @return the title of the question
 	 */
-	String getQuestionTitle(String question) 
+	private String getQuestionTitle(String question) 
 	{
 		int index = question.indexOf('|');
 		return question.substring(1,index-1);	
@@ -88,7 +89,7 @@ public class WikiReader {
 	 * @param question
 	 * @return a DefaultAnswerBlock object 
 	 */
-	DefaultAnswerBlock getAnswerBlock(String question) 
+	private DefaultAnswerBlock getAnswerBlock(String question) 
 	{
 		DefaultAnswerBlock answerBlock = new DefaultAnswerBlock();
 		String[] answers = question.substring(question.indexOf('}')+2).split("\n");
