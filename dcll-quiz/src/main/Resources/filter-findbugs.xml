@@ -11,4 +11,4 @@
   <Match>
     <Method returns="boolean" name="checkQuestionForm" params="java.lang.String" />
   </Match>
-<FindBugsFilter>
+</FindBugsFilter>

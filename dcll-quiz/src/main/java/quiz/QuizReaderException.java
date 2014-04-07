@@ -21,6 +21,10 @@ package quiz;
  */
 public class QuizReaderException extends Exception {
 
+	/**
+     * return the apropriate quiz exception
+     * @param message
+     */
     public QuizReaderException(String message) {
         super(message);
     }
