@@ -3,12 +3,19 @@ package quiz.parser;
 import java.util.regex.Pattern;
 
 import quiz.Answer;
+import quiz.AnswerBlock;
 import quiz.QuestionType;
 import quiz.Quiz;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
 import quiz.impl.DefaultQuiz;
+
+/**
+ * 
+ * @author Assyl
+ *
+ */
 
 public class WikiReader implements QuizReader {
 	
@@ -56,6 +63,13 @@ public class WikiReader implements QuizReader {
 		questionObject.setQuestionType(getQuestionType(question));
 		questionObject.setTitle(getQuestionTitle(question));
 		questionObject.addAnswerBlock(getAnswerBlock(question));
+		int nbGdAnswers = nbGoodAnswers(questionObject.getAnswerBlockList().get(0));
+		if(nbGdAnswers >= 1) {
+			if((nbGdAnswers > 1) && (questionObject.getQuestionType() == QuestionType.ExclusiveChoice)){
+				
+			}
+		}
+		
 		return questionObject;
 	}
 
@@ -81,6 +95,23 @@ public class WikiReader implements QuizReader {
 	{
 		int index = question.indexOf('|');
 		return question.substring(1,index-1);	
+	}
+
+	/**
+	 * This method returns the number of good answers that are available in the answer block
+	 * @param answerBlock
+	 * @return the number of good answers
+	 */
+	private int nbGoodAnswers(AnswerBlock answerBlock){
+		int nbGdAnswers= 0;
+		for(Answer answer : answerBlock.getAnswerList()){
+			if (answer.getPercentCredit() > 0) {
+				nbGdAnswers++;
+			}
+		}
+		
+		return nbGdAnswers;
+	
 	}
 	
 	/**
