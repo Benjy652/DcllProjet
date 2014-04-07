@@ -1,0 +1,14 @@
+<FindBugsFilter>
+  <Match>
+    <Method returns="String" name="getQuestionTitle" params="java.lang.String" />
+  </Match>
+  <Match>
+    <Method returns="QuestionType" name="getQuestionType" params="java.lang.String" />
+  </Match>
+  <Match>
+    <Method returns="DefaultAnswerBlock" name="getAnswerBlock" params="java.lang.String" />
+  </Match>
+  <Match>
+    <Method returns="boolean" name="checkQuestionForm" params="java.lang.String" />
+  </Match>
+</FindBugsFilter>

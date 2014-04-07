@@ -20,6 +20,8 @@ package quiz;
  * @author franck Silvestre
  */
 public interface TextBlock extends QuestionBlock {
-
+	/**
+     * Return the text content of a QuestionBlock.
+     */
     public String getText();
 }

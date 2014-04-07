@@ -28,6 +28,7 @@ public interface QuizContentHandler {
 
     /**
      * Receive notification of a new string
+     * @param str
      */
     public void onString(String str);
 
@@ -53,6 +54,7 @@ public interface QuizContentHandler {
 
     /**
      * Receive notification of the beginning of an answer
+     * @param str
      */
     public void onStartAnswer(String prefix);
 
