@@ -16,24 +16,31 @@
 
 package quiz.parser;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.regex.Pattern;
 
 import quiz.Quiz;
+import quiz.exceptions.NoParserInputException;
 import quiz.exceptions.WrongSyntaxException;
-import quiz.impl.DefaultAnswer;
-import quiz.impl.DefaultAnswerBlock;
-import quiz.impl.DefaultQuestion;
-import quiz.impl.DefaultQuiz;
+
 
 /**
  * @author franck Silvestre
  */
 public interface QuizReader {
 
-	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException;
+	/**
+	 * This method parse the input quiz and returns a Quiz object
+	 * @param quiz : a wikiversity quiz in a String form
+	 * @return a Quiz object
+	 * @throws WrongSyntaxException : is the syntax of the input violates wikiversity rules
+	 * @throws NoParserInputException : if the input is empty
+	 */
+	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException, NoParserInputException;
 
+	/**
+	 * This method checks the question form
+	 * @param question : a wikiversity quiz in a String form
+	 * @return true if the question respect the wikiversity form, false otherwise
+	 */
 	public boolean checkQuestionForm(String question);
 
 }

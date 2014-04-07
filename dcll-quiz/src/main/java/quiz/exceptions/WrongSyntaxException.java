@@ -7,7 +7,10 @@ package quiz.exceptions;
  */
 public class WrongSyntaxException extends Exception {
 	
-	
+	/**
+	 * The constructor of a WrongSyntaxException exception
+	 * @param errorMessage : the message that fits the error
+	 */
 	public WrongSyntaxException(String errorMessage){
 		super(errorMessage);
 	}

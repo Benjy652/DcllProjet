@@ -6,6 +6,7 @@ import quiz.Answer;
 import quiz.AnswerBlock;
 import quiz.QuestionType;
 import quiz.Quiz;
+import quiz.exceptions.NoParserInputException;
 import quiz.exceptions.WrongSyntaxException;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
@@ -23,29 +24,34 @@ public class WikiReader implements QuizReader {
 	/**
 	 * This method take a quiz, in a text form, in entry and do all the necessary operations to check
 	 * the questions forms and construct the objects	
-	 * @param quiz
+	 * @param quiz in a text form
 	 * @return a Quiz object 
 	 * @throws WrongSyntaxException 
+	 * @throws NoParserInputException 
 	 */
-	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException{
-		String[] questions = quiz.split("\\n\\n");
-		DefaultQuiz defQuiz = new DefaultQuiz();
-		
-		for(int i = 0; i < questions.length; i++){
-			if(checkQuestionForm(questions[i])){
-				defQuiz.addQuestion(getQuestion(questions[i]));
+	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException, NoParserInputException{
+		if(quiz != ""){
+			String[] questions = quiz.split("\\n\\n");
+			DefaultQuiz defQuiz = new DefaultQuiz();
+			
+			for(int i = 0; i < questions.length; i++){
+				if(checkQuestionForm(questions[i])){
+					defQuiz.addQuestion(getQuestion(questions[i]));
+				}
+				else {
+					throw new WrongSyntaxException("Error : input doesn't respect the Wikiversity syntax !");
+				}
 			}
-			else {
-				throw new WrongSyntaxException("Error : your quiz doesn't respect the Wikiversity syntax !");
-			}
+			return defQuiz;
 		}
-		return defQuiz;
-		
+		else {
+			throw new NoParserInputException();
+			}
 	}
 	
 	/**
 	 * This method checks the form of the question 
-	 * @param question
+	 * @param question : a wikiversity question in a String form
 	 * @return true if the question respects wikiversity form, false otherwise
 	 */
 	public boolean checkQuestionForm(String question)
@@ -59,7 +65,7 @@ public class WikiReader implements QuizReader {
 	
 	/**
 	 * This method takes a question in a text form and construct the object
-	 * @param question
+	 * @param question : a wikiversity question in a String form
 	 * @return DefaultQuestion object
 	 * @throws WrongSyntaxException 
 	 */
@@ -84,35 +90,39 @@ public class WikiReader implements QuizReader {
 
 	/**
 	 * This method gives, from the question in a wikiversity form, the question type
-	 * @param question
+	 * @param question : a wikiversity question in a String form
 	 * @return the type of the question (Multiple or Single)
 	 */
 	public QuestionType getQuestionType(String question) 
 	{
 		int index = question.indexOf('|');
-		if(question.charAt(index+7) == '[') return QuestionType.MultipleChoice;
-		else return QuestionType.ExclusiveChoice;
+		if(question.charAt(index+7) == '[') {
+			return QuestionType.MultipleChoice;
+		}
+		else {
+			return QuestionType.ExclusiveChoice;
+		}
 		
 	}
 	
 	/**
 	 * This method gives, from the question in a wikiversity form, the question title
-	 * @param question
+	 * @param question : a wikiversity question in a String form
 	 * @return the title of the question
 	 */
 	public String getQuestionTitle(String question) 
 	{
 		int index = question.indexOf('|');
-		return question.substring(1,index-1);	
+		return question.substring(1, index-1);	
 	}
 
 	/**
 	 * This method returns the number of good answers that are available in the answer block
-	 * @param answerBlock
+	 * @param answerBlock : an AnswerBlock object
 	 * @return the number of good answers
 	 */
 	public int nbGoodAnswers(AnswerBlock answerBlock){
-		int nbGdAnswers= 0;
+		int nbGdAnswers = 0;
 		for(Answer answer : answerBlock.getAnswerList()){
 			if (answer.getPercentCredit() > 0) {
 				nbGdAnswers++;
@@ -125,7 +135,7 @@ public class WikiReader implements QuizReader {
 	
 	/**
 	 * This method gives, from the question in a wikiversity form, the different answers put in a DefaultAnswerBlock
-	 * @param question
+	 * @param question : a wikiversity question in a String form
 	 * @return a DefaultAnswerBlock object 
 	 */
 	public DefaultAnswerBlock getAnswerBlock(String question) 
@@ -150,6 +160,7 @@ public class WikiReader implements QuizReader {
 				answer.setPercentCredit(0.f);
 			}
 			answer.setTextValue(answers[i].substring(1));
+			answer.setIdentifier(answers[i].substring(1));
 			answerBlock.addAnswer(answer);
 		}
 		return answerBlock;	

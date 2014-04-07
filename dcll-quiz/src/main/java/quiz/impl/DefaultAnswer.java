@@ -30,12 +30,18 @@ public class DefaultAnswer implements Answer {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+        	return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+        	return false;
+        }
 
         DefaultAnswer that = (DefaultAnswer) o;
 
-        if (!identifier.equals(that.identifier)) return false;
+        if (!identifier.equals(that.identifier)) {
+        	return false;
+        }
 
         return true;
     }
@@ -97,8 +103,8 @@ public class DefaultAnswer implements Answer {
     }
 
     /**
-     * Set the feedback
-     * @param feedback
+     * Set the feedback 
+     * @param feedback : the feedback to the answer
      */
     public void setFeedback(String feedback) {
         this.feedback = feedback;
@@ -107,7 +113,7 @@ public class DefaultAnswer implements Answer {
     /**
      * Get the feedback to present to a student for this answer
      *
-     * @return
+     * @return the feedback
      */
     public String getFeedBack() {
         return feedback;

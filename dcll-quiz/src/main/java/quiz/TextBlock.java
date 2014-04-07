@@ -22,6 +22,7 @@ package quiz;
 public interface TextBlock extends QuestionBlock {
 	/**
      * Return the text content of a QuestionBlock.
+     * @return the text
      */
     public String getText();
 }

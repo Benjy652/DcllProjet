@@ -21,10 +21,29 @@ package quiz;
  */
 public enum QuestionType {
 
+	/**
+	 * Undefined question type
+	 */
     Undefined(0),
+    
+    /**
+     * Exclusive choice question type
+     */
     ExclusiveChoice(1),
+    
+    /**
+     * Multiple choice question type
+     */
     MultipleChoice(2),
+    
+    /**
+     * True/False question type
+     */
     TrueFalse(3),
+    
+    /**
+     * Fill in the blank question type
+     */
     FillInTheBlank(4);
 
     private int code;
