@@ -6,6 +6,7 @@ import quiz.Answer;
 import quiz.AnswerBlock;
 import quiz.QuestionType;
 import quiz.Quiz;
+import quiz.exceptions.WrongSyntaxException;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
@@ -24,14 +25,18 @@ public class WikiReader implements QuizReader {
 	 * the questions forms and construct the objects	
 	 * @param quiz
 	 * @return a Quiz object 
+	 * @throws WrongSyntaxException 
 	 */
-	public Quiz getDefaultQuiz(String quiz){
+	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException{
 		String[] questions = quiz.split("\\n\\n");
 		DefaultQuiz defQuiz = new DefaultQuiz();
 		
 		for(int i = 0; i < questions.length; i++){
 			if(checkQuestionForm(questions[i])){
 				defQuiz.addQuestion(getQuestion(questions[i]));
+			}
+			else {
+				throw new WrongSyntaxException("Error : your quiz doesn't respect the Wikiversity syntax !");
 			}
 		}
 		return defQuiz;
@@ -56,8 +61,9 @@ public class WikiReader implements QuizReader {
 	 * This method takes a question in a text form and construct the object
 	 * @param question
 	 * @return DefaultQuestion object
+	 * @throws WrongSyntaxException 
 	 */
-	private DefaultQuestion getQuestion(String question) 
+	public DefaultQuestion getQuestion(String question) throws WrongSyntaxException 
 	{
 		DefaultQuestion questionObject = new DefaultQuestion();
 		questionObject.setQuestionType(getQuestionType(question));
@@ -66,8 +72,11 @@ public class WikiReader implements QuizReader {
 		int nbGdAnswers = nbGoodAnswers(questionObject.getAnswerBlockList().get(0));
 		if(nbGdAnswers >= 1) {
 			if((nbGdAnswers > 1) && (questionObject.getQuestionType() == QuestionType.ExclusiveChoice)){
-				
+				throw new WrongSyntaxException("Error : A single choice question must have only one correct answer !");
 			}
+		}
+		else {
+			throw new WrongSyntaxException("Error : A question must have at least one correct answer !");
 		}
 		
 		return questionObject;
@@ -78,7 +87,7 @@ public class WikiReader implements QuizReader {
 	 * @param question
 	 * @return the type of the question (Multiple or Single)
 	 */
-	private QuestionType getQuestionType(String question) 
+	public QuestionType getQuestionType(String question) 
 	{
 		int index = question.indexOf('|');
 		if(question.charAt(index+7) == '[') return QuestionType.MultipleChoice;
@@ -91,7 +100,7 @@ public class WikiReader implements QuizReader {
 	 * @param question
 	 * @return the title of the question
 	 */
-	private String getQuestionTitle(String question) 
+	public String getQuestionTitle(String question) 
 	{
 		int index = question.indexOf('|');
 		return question.substring(1,index-1);	
@@ -102,7 +111,7 @@ public class WikiReader implements QuizReader {
 	 * @param answerBlock
 	 * @return the number of good answers
 	 */
-	private int nbGoodAnswers(AnswerBlock answerBlock){
+	public int nbGoodAnswers(AnswerBlock answerBlock){
 		int nbGdAnswers= 0;
 		for(Answer answer : answerBlock.getAnswerList()){
 			if (answer.getPercentCredit() > 0) {
@@ -119,7 +128,7 @@ public class WikiReader implements QuizReader {
 	 * @param question
 	 * @return a DefaultAnswerBlock object 
 	 */
-	private DefaultAnswerBlock getAnswerBlock(String question) 
+	public DefaultAnswerBlock getAnswerBlock(String question) 
 	{
 		DefaultAnswerBlock answerBlock = new DefaultAnswerBlock();
 		String[] answers = question.substring(question.indexOf('}')+2).split("\n");

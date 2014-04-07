@@ -21,6 +21,7 @@ import java.io.Reader;
 import java.util.regex.Pattern;
 
 import quiz.Quiz;
+import quiz.exceptions.WrongSyntaxException;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
@@ -31,7 +32,7 @@ import quiz.impl.DefaultQuiz;
  */
 public interface QuizReader {
 
-	public Quiz getDefaultQuiz(String quiz);
+	public Quiz getDefaultQuiz(String quiz) throws WrongSyntaxException;
 
 	public boolean checkQuestionForm(String question);
 

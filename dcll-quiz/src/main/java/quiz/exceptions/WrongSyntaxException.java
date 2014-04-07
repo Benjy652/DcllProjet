@@ -8,7 +8,7 @@ package quiz.exceptions;
 public class WrongSyntaxException extends Exception {
 	
 	
-	WrongSyntaxException(String errorMessage){
+	public WrongSyntaxException(String errorMessage){
 		super(errorMessage);
 	}
 
