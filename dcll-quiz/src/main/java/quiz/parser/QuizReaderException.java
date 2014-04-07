@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package quiz;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.util.regex.Pattern;
-
-import quiz.impl.DefaultAnswer;
-import quiz.impl.DefaultAnswerBlock;
-import quiz.impl.DefaultQuestion;
-import quiz.impl.DefaultQuiz;
+package quiz.parser;
 
 /**
  * @author franck Silvestre
  */
-public interface QuizReader {
+public class QuizReaderException extends Exception {
 
-	public Quiz getDefaultQuiz(String quiz);
-
-	public boolean checkQuestionForm(String question);
+    public QuizReaderException(String message) {
+        super(message);
+    }
 
 }

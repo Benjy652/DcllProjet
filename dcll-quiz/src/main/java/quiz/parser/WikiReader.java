@@ -1,15 +1,14 @@
-package quiz.impl.wikiversity;
+package quiz.parser;
 
 import java.util.regex.Pattern;
 
 import quiz.Answer;
 import quiz.QuestionType;
 import quiz.Quiz;
-import quiz.QuizReader;
-import quiz.impl.DefaultQuiz;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
+import quiz.impl.DefaultQuiz;
 
 public class WikiReader implements QuizReader {
 	
