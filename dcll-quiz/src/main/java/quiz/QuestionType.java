@@ -29,13 +29,16 @@ public enum QuestionType {
 
     private int code;
 
+    /**
+     * The constructor 
+     * @param code
+     */
     QuestionType(int code) {
         this.code = code;
     }
 
     /**
-     * Get the code of que question type
-     *
+     * Get the code of the question type
      * @return the code
      */
     public int getCode() {

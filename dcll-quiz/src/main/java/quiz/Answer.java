@@ -24,6 +24,7 @@ public interface Answer {
 
     /**
      * Get the identifier of the answer relative to the question
+     * 
      * @return the identifier
      */
     public String getIdentifier();
@@ -44,7 +45,8 @@ public interface Answer {
 
     /**
      * Get the feedback to present to a student for this answer
-     * @return
+     * 
+     * @return the feeadback 
      */
     public String getFeedBack();
 }
