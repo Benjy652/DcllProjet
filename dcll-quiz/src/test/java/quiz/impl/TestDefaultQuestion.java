@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import quiz.QuestionType;
 
-public class DefaultQuestionTest {
+public class TestDefaultQuestion {
 	DefaultQuestion dq = new DefaultQuestion();
 
 	@Before

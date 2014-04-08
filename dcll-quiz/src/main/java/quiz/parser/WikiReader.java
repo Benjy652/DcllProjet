@@ -68,10 +68,14 @@ public class WikiReader implements QuizReader {
 	 * @param question : a wikiversity question in a String form
 	 * @return DefaultQuestion object
 	 * @throws WrongSyntaxException 
+	 * @throws NoParserInputException 
 	 */
-	public DefaultQuestion getQuestion(String question) throws WrongSyntaxException 
+	public DefaultQuestion getQuestion(String question) throws WrongSyntaxException, NoParserInputException 
 	{
 		DefaultQuestion questionObject = new DefaultQuestion();
+		if (question.equals("")) {
+			throw new NoParserInputException();
+		}
 		questionObject.setQuestionType(getQuestionType(question));
 		questionObject.setTitle(getQuestionTitle(question));
 		questionObject.addAnswerBlock(getAnswerBlock(question));

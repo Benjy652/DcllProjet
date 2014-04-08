@@ -8,6 +8,7 @@ import org.junit.Test;
 import quiz.Answer;
 import quiz.AnswerBlock;
 import quiz.QuestionType;
+import quiz.exceptions.NoParserInputException;
 import quiz.exceptions.WrongSyntaxException;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
@@ -26,6 +27,9 @@ public class TestWikiReader extends TestCase {
 		try {
 			questionQuiz=parseur.getQuestion("{Ceci est la première question\n|type=\"[]\"}\n+The correct answer.\n-Distractor.\n-Distractor.\n-Distractor.\n");
 		} catch (WrongSyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoParserInputException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
