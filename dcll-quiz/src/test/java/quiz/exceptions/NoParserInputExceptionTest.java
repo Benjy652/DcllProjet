@@ -21,7 +21,7 @@ public class NoParserInputExceptionTest {
 	@Test(expected = NoParserInputException.class)  
 	public void test() throws  NoParserInputException, WrongSyntaxException {
 		WikiReader parseur = new WikiReader();
-		parseur.getQuestion(""); 
+		parseur.getQuestion("");
 	}
 
 }
