@@ -19,9 +19,9 @@ package quiz;
 /**
  * @author franck Silvestre
  */
-public interface TextBlock extends QuestionBlock {
+public interface TextBlock extends QuestionBlock { 
 	/**
-     * Return the text content of a QuestionBlock.
+     * Return the text content of a QuestionBlock. 
      * @return the text
      */
     public String getText();

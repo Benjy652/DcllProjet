@@ -14,3 +14,4 @@ public class NoParserInputException extends Exception{
 		super("Error : No input to parse!");
 	}
 }
+ 

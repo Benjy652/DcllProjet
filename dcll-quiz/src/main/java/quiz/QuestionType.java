@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package quiz;
+package quiz; 
 
 /**
  * @author franck Silvestre
  */
 public enum QuestionType {
-
+ 
 	/**
 	 * Undefined question type
 	 */

@@ -50,7 +50,7 @@ public class DefaultQuestion implements Question {
         return questionType;
     }
 
-    /**
+    /** 
      * Set the question type
      * @param questionType the question type
      */

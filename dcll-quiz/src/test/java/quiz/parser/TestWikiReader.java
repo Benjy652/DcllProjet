@@ -13,7 +13,7 @@ import quiz.exceptions.WrongSyntaxException;
 import quiz.impl.DefaultAnswer;
 import quiz.impl.DefaultAnswerBlock;
 import quiz.impl.DefaultQuestion;
-import junit.framework.TestCase;
+import junit.framework.TestCase; 
 
 public class TestWikiReader extends TestCase {
 

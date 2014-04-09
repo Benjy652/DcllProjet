@@ -19,15 +19,39 @@ public class TestDefaultAnswer {
 
 	@Test
 	public void testHashCode() {
-		DefaultAnswer da2 = new DefaultAnswer();
-		assertTrue(da.hashCode()==da2.hashCode());	
+		DefaultAnswer answer1 = new DefaultAnswer();
+		answer1.setIdentifier("answer1");
+		answer1.setPercentCredit(0.5f);
+		answer1.setTextValue("text1");
+	
+		DefaultAnswer answer2 = new DefaultAnswer();
+		answer2.setIdentifier("answer1");
+		answer2.setPercentCredit(0.5f);
+		answer2.setTextValue("text1");
+		
+		assertTrue(answer2.hashCode()==answer1.hashCode());	
 	}
 
 	@Test
 	public void testEqualsObject() {
-		Object da2 = new DefaultAnswer();
-		System.out.println(da.equals(da2)==true);
-		assertTrue(da.equals(da2));
+		DefaultAnswer answer1 = new DefaultAnswer();
+		answer1.setIdentifier("answer1");
+		answer1.setPercentCredit(0.5f);
+		answer1.setTextValue("text1");
+	
+		DefaultAnswer answer2 = new DefaultAnswer();
+		answer2.setIdentifier("answer1");
+		answer2.setPercentCredit(0.5f);
+		answer2.setTextValue("text1");
+		
+		DefaultAnswer answer3 = new DefaultAnswer();
+		answer3.setIdentifier("answer2");
+		answer3.setPercentCredit(0.5f);
+		answer3.setTextValue("text3");
+		
+		assertTrue(answer1.equals(answer2));
+		assertFalse(answer1.equals(answer3));
+		
 	}
 
 	@Test

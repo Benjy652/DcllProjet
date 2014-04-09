@@ -16,7 +16,7 @@
 
 package quiz.parser;
 
-
+ 
 import quiz.Quiz;
 import quiz.exceptions.NoParserInputException;
 import quiz.exceptions.WrongSyntaxException;
