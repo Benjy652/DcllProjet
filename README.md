@@ -7,4 +7,4 @@ Parseur de quiz au format wikiversity, il s'agit d'un projet maven contenant des
 
 Le projet implemente certaines interfaces du projet https://github.com/TSaaP/tsaap-notes.
 
-Vous trouverer dans le dossier documentation toute les informations sur le projet.
+Vous trouverez dans le dossier documentation toutes les informations sur le projet.
