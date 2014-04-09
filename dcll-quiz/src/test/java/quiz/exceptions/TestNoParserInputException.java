@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import quiz.parser.WikiReader;
 
-public class NoParserInputExceptionTest {
+public class TestNoParserInputException {
 
 	@Before
 	public void setUp() throws Exception {
@@ -19,7 +19,7 @@ public class NoParserInputExceptionTest {
 	}
 
 	@Test(expected = NoParserInputException.class)  
-	public void test() throws  NoParserInputException, WrongSyntaxException {
+	public void testNoParserInputException() throws  NoParserInputException, WrongSyntaxException {
 		WikiReader parseur = new WikiReader();
 		parseur.getQuestion("");
 	}

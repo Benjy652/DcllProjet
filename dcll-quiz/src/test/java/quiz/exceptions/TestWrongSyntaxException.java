@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import quiz.parser.WikiReader;
 
-public class WrongSyntaxExceptionTest {
+public class TestWrongSyntaxException {
 
 	@Before
 	public void setUp() throws Exception {
